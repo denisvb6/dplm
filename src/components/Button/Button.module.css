@@ -1,0 +1,12 @@
+.button{
+    padding: 0.75em 0em;
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    background: #41412c;
+    color: #fff;
+}
+
+.button:hover{
+    background: rgba(77, 67, 67, 0.8);
+}

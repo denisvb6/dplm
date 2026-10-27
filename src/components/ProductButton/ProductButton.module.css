@@ -1,0 +1,17 @@
+.productButton {
+    width: 12.56rem;
+    height: 3.0rem;
+    border-radius: 0.75rem;
+    border: 2px solid transparent;
+    padding: 1em 1em;
+    background: rgba(32, 28, 28, 0.8);
+    color: #EBEEF5;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    margin: 35px 0px 0px 200px;
+}
+
+.productButton:hover {
+    background: rgba(77, 67, 67, 0.8);
+}

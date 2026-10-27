@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+backend/.env
+*.log
+
+cookies.txt
+test-product.json
+test-update.json
+import-products.json

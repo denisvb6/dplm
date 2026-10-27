@@ -1,0 +1,185 @@
+.admin-panel {
+    display: grid;
+    grid-template-columns: 350px minmax(0, 1fr);
+    align-items: start;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-sidebar {
+    width: 350px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.admin-form-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-table-wrapper {
+    min-width: 0;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    margin: 0;
+    /* border-collapse: collapse; */
+    border: 2px solid #079225;
+    border-radius: 3px;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid #201c1c;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.admin-table th {
+    height: 44px;
+    background: #201c1c;
+    color: white;
+    font-weight: bold;
+}
+
+/* Фотографии товаров в таблице */
+.admin-table td > img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+/* Иконки карандаша и удаления */
+.admin-table .order-actions__edit img,
+.admin-table .order-actions__delete img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.admin-table .button-delete {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+}
+
+.admin-table .button-delete img {
+    width: 20px;
+    height: 20px;
+}
+
+.empty-orders {
+    padding: 30px !important;
+    text-align: center !important;
+    color: #777;
+}
+
+@media (max-width: 900px) {
+    .admin-panel {
+        grid-template-columns: 300px minmax(0, 1fr);
+    }
+
+    .admin-sidebar {
+        width: 300px;
+    }
+}
+
+/* Количество: обычное начертание */
+.quantity-value {
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.quantity-edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.quantity-edit input {
+    width: 65px;
+    min-width: 0;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.quantity-edit span {
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.order-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.order-actions__edit,
+.order-actions__delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+    box-sizing: border-box;
+
+    border: 1px solid #201c1c;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.order-actions__edit img,
+.order-actions__delete img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.order-actions__edit:hover {
+    background: #e8e8e8;
+}
+
+.order-actions__delete {
+    border-color: #c62828;
+}
+
+.order-actions__delete:hover {
+    background: #c62828;
+}
+
+/* Сохранение и отмена */
+.order-actions__save,
+.order-actions__cancel {
+    min-height: 36px;
+    padding: 7px 10px;
+    border: 1px solid #201c1c;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.order-actions__save {
+    background: #079225;
+    border-color: #079225;
+    color: #fff;
+}
+
+.order-actions__cancel {
+    background: #fff;
+    color: #201c1c;
+}
