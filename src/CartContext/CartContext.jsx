@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { BASE } from '../api';
 
 const CartContext = createContext(null);
 
@@ -50,7 +51,7 @@ export const CartProvider = ({ children }) => {
 
         let response;
         try {
-            response = await fetch('/api/orders', {
+            response = await fetch(`${BASE}/orders`, {
                 method: 'POST',
                 credentials: 'include', // ← cookie с access-токеном
                 headers: { 'Content-Type': 'application/json' },
