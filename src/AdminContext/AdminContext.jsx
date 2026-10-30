@@ -3,8 +3,9 @@ import { useUser } from '../UserContext/UserContext';
 
 const AdminContext = createContext(null);
 
-const PRODUCTS_API_URL = '/api/products';
-const ORDERS_API_URL = '/api/orders';
+import { BASE } from '../api';
+const PRODUCTS_API_URL = `${BASE}/products`;
+const ORDERS_API_URL = `${BASE}/orders`;
 
 async function request(url, options = {}) {
     const res = await fetch(url, {
