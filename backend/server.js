@@ -11,7 +11,6 @@ import rateLimit from 'express-rate-limit';
 import authRouter from './routes/auth.js';
 import { protect, authorize } from './middleware/auth.js';
 
-
 dotenv.config({ path: process.env.ENV_FILE || './backend/.env' });
 
 const app = express();
@@ -40,7 +39,8 @@ app.use(
             );
         },
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization']
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true
     })
 );
 
