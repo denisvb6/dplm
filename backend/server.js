@@ -10,6 +10,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import authRouter from './routes/auth.js';
 import { protect, authorize } from './middleware/auth.js';
+import User from './models/User.js';
 
 dotenv.config({ path: process.env.ENV_FILE || './backend/.env' });
 
@@ -497,6 +498,9 @@ async function startServer() {
             serverSelectionTimeoutMS: 10000
         });
         console.log('Успешно подключено к MongoDB.');
+
+        await ensureAdmin();
+
         app.listen(PORT, '0.0.0.0', () => {
             console.log(`Сервер API запущен на порту ${PORT}`);
         });
@@ -504,6 +508,42 @@ async function startServer() {
         console.error('Не удалось подключиться к MongoDB:', error.message);
         process.exitCode = 1;
     }
+}
+
+
+async function ensureAdmin() {
+    const adminUsername = process.env.ADMIN_USERNAME;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminUsername || !adminPassword) {
+        console.log('ADMIN_USERNAME/ADMIN_PASSWORD не заданы — автоматическое создание админа пропущено');
+        return;
+    }
+
+    // Проверяем, есть ли уже хоть один админ
+    const existingAdmin = await User.findOne({ role: 'admin' });
+    if (existingAdmin) {
+        console.log('Администратор уже существует');
+        return;
+    }
+
+    // Проверяем, не занят ли логин обычным пользователем
+    const existingUser = await User.findOne({ username: adminUsername });
+    if (existingUser) {
+        // Если пользователь есть, но он не админ — повышаем роль
+        existingUser.role = 'admin';
+        await existingUser.save();
+        console.log(`Пользователь ${adminUsername} повышен до администратора`);
+        return;
+    }
+
+    // Создаём нового админа (пароль захешируется в pre('save'))
+    await User.create({
+        username: adminUsername,
+        passwordHash: adminPassword,
+        role: 'admin',
+    });
+    console.log(`Администратор ${adminUsername} создан`);
 }
 
 startServer();
